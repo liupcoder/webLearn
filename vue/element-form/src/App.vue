@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     {{value}}
-    <k-input :value="value" @input="value = arguments[0]"></k-input>
+    <k-form :model="model" :rules="rules">
+      <k-form-item label="用户名" prop="username">
+        <k-input v-model="model.username"></k-input>
+      </k-form-item>
+      <k-form-item label="确认密码" prop="password">
+        <k-input v-model="model.password" type="password"></k-input>
+      </k-form-item>
+    </k-form>
+
     <div>
       <h3>Element表单</h3>
       <hr />
@@ -22,11 +30,15 @@
 
 <script>
 import KInput from "./components/Input.vue";
+import KFormItem from "./components/FormItem.vue";
+import KForm from "./components/Form.vue";
 
 export default {
   name: "App",
   components: {
-    KInput
+    KInput,
+    KFormItem,
+    KForm
   },
   data() {
     return {
